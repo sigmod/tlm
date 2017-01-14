@@ -37,6 +37,8 @@ all: CMakeLists.txt Makefile GNUmakefile build/Makefile compile
 
 compile: build/Makefile
 	(cd build && $(MAKE) all install)
+	(cd analytics && mvn package -DskipTests)
+	(cp -R analytics/asterixdb/asterix-opt/installer/target/couchbase-analytics-1.0.0-SNAPSHOT-generic/cbas install/lib)
 
 test: all
 	(cd build && $(MAKE) test)
